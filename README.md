@@ -1,0 +1,1 @@
+Repository ini adalah sebuah aplikasi multiplatform flutter yang dibuat untuk memberikan ulasan pada sebuah mechanical keyboard, switch, keycap, dan lain-lain. Selain itu, repository ini juga menyediakan artikel yang berhubungan dengan keyboard.
