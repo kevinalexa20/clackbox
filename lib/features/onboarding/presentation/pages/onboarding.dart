@@ -24,9 +24,12 @@ class _OnBoardingState extends State<OnBoarding> {
           PageView(
             controller: pageController,
             physics: const AlwaysScrollableScrollPhysics(),
-            children: const [
+            children: [
               Center(
-                child: Text('Page 1'),
+                child: Text(
+                  'Page 1',
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
               ),
               Center(
                 child: Text('Page 2'),
@@ -59,7 +62,9 @@ class _OnBoardingState extends State<OnBoarding> {
                       curve: Curves.easeInOut,
                     );
                   },
-                  child: const Text('Next'),
+                  child: const Text(
+                    'Next',
+                  ),
                 ),
               ],
             ),

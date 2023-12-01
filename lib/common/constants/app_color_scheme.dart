@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//im importing this color scheme using material official website
+
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF910ED6),
