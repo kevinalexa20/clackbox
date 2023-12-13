@@ -1,13 +1,20 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:clackbox/common/constants/app_color_scheme.dart';
+import 'package:clackbox/features/onboarding/presentation/widgets/page_one.dart';
+import 'package:clackbox/features/onboarding/presentation/widgets/page_two.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnBoarding extends StatefulWidget {
-  const OnBoarding({super.key});
+@RoutePage()
+class OnBoardingPage extends StatefulWidget {
+  const OnBoardingPage({super.key});
 
   @override
-  State<OnBoarding> createState() => _OnBoardingState();
+  State<OnBoardingPage> createState() => _OnBoardingPageState();
 }
 
-class _OnBoardingState extends State<OnBoarding> {
+class _OnBoardingPageState extends State<OnBoardingPage> {
   final PageController pageController = PageController();
 
   @override
@@ -24,51 +31,43 @@ class _OnBoardingState extends State<OnBoarding> {
           PageView(
             controller: pageController,
             physics: const AlwaysScrollableScrollPhysics(),
-            children: [
-              Center(
-                child: Text(
-                  'Page 1',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ),
-              Center(
-                child: Text('Page 2'),
-              ),
-              Center(
-                child: Text('Page 3'),
-              ),
+            children: const [
+              PageOne(),
+              PageTwo(),
+              // PageThree(),
+              // PageFour(),
             ],
           ),
-          Positioned(
-            bottom: 20,
-            left: 20,
-            right: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    pageController.previousPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Text('Previous'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    pageController.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  child: const Text(
-                    'Next',
-                  ),
-                ),
-              ],
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn);
+                    },
+                    child: SmoothPageIndicator(
+                      controller: pageController,
+                      count: 4,
+                      effect: ExpandingDotsEffect(
+                        activeDotColor: Color(darkColorScheme.onPrimary.value),
+                        dotColor: Color(darkColorScheme.primary.value),
+                        dotHeight: 8.h,
+                        dotWidth: 8.w,
+                        expansionFactor: 2,
+                        spacing: 5.w,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
+          )
         ],
       ),
     );
