@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clackbox/common/constants/app_color_scheme.dart';
 import 'package:clackbox/common/constants/height_spacer.dart';
+import 'package:clackbox/common/dependency_injection/di_container.dart';
+import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
@@ -13,6 +16,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  final DIContainer diContainer = DIContainer();
+
+  late AuthBloc _authBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+  }
+
+  void clearText() {
+    _emailController.clear();
+    _passwordController.clear();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,7 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              
+                            },
                             child: const Text('Login',
                                 style: TextStyle(
                                   fontSize: 16,

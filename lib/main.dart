@@ -3,15 +3,16 @@ import 'package:clackbox/common/dependency_injection/di_container.dart';
 import 'package:clackbox/common/routes/app_router.dart';
 import 'package:clackbox/common/services/appwrite_client.dart';
 import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'common/constants/constants.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Client client = Client();
+  // Databases database = Databases(Client());
   AppWriteClient();
 
   runApp(MyApp());

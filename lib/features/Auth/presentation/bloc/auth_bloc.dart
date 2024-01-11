@@ -51,9 +51,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     on<AuthRegisterEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));
+      //either <String = pesan error jika event(registrasi gagal), UserModel = data model user ditampilkan>
       final Either<String, UserModel> result =
           await authRepository.register(event.registerModel);
 
+      //fold dari package dartz ini untuk menangani error dan success, jika error maka akan dijalankan fungsi (error), jika success maka akan dijalankan fungsi (userModel)
       result.fold((error) {
         emit(state.copyWith(
             stateStatus: StateStatus.error, errorMessage: error));
@@ -65,6 +67,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userModel: userModel,
         ));
       });
+      //print utk debugging
+      print(result);
     });
 
     on<AuthLogoutEvent>((event, emit) async {

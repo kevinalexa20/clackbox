@@ -7,7 +7,7 @@ import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class DIContainer {
-  //client
+  //core
   Client get _client => Client()
       .setEndpoint(AppWriteConstants.endPoint)
       .setProject(AppWriteConstants.projectID)

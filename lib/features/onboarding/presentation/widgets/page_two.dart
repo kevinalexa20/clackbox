@@ -1,12 +1,13 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/constants/constants.dart';
-import 'package:clackbox/common/routes/app_router.dart';
+import 'package:clackbox/common/constants/app_color_scheme.dart';
+import 'package:clackbox/common/constants/height_spacer.dart';
+import 'package:clackbox/common/constants/reusable_text.dart';
+import 'package:clackbox/common/constants/width_spacer.dart';
+import 'package:clackbox/common/global_widgets/mybutton.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/big_round_button.dart';
+import 'package:clackbox/features/onboarding/presentation/widgets/my_modal_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-@RoutePage()
 class PageTwo extends StatefulWidget {
   const PageTwo({super.key});
 
@@ -15,178 +16,118 @@ class PageTwo extends StatefulWidget {
 }
 
 class _PageTwoState extends State<PageTwo> {
-  // bool isOnSignup = false;
-  // bool isOnLogin = false;
-  bool isButtonPress = false;
-  bool userPressLogin = false;
-  bool userPressSignup = false;
-  String _userChoice = "";
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: AppConst.myWidth,
-      height: AppConst.myHeight,
-      // color: Color(lightColorScheme.background.value),
-      decoration: BoxDecoration(
-        color: Color(lightColorScheme.background.value),
-        image: DecorationImage(
-          image: const AssetImage('assets/onboard/gerald-imkgdc.png'),
-          fit: BoxFit.none,
-          alignment: Alignment.topCenter,
-          colorFilter: ColorFilter.mode(
-            const Color(0xFFFDFBFF).withOpacity(0.1),
-            BlendMode.color,
-          ),
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          HeightSpacer(height: 200.h),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
-              child: Image(
-                image: const AssetImage(
-                  'assets/onboard/CB-logo-outline-white.png',
-                ),
-                width: 150.w,
-                height: 150.h,
-                color: Color(darkColorScheme.background.value),
-              )),
-          HeightSpacer(height: 5.h),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ReusableText(
-                text: "ClackBox",
-                style: TextStyle(
-                  color: Color(darkColorScheme.background.value),
-                  fontSize: 40,
-                  fontWeight: FontWeight.w600,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.75),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4.5),
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Image(
+              image: AssetImage(
+                'assets/onboard/CB-logo-outline-white.png',
               ),
-            ],
-          ),
-          HeightSpacer(height: 30.h),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // width: 150.w,
+              // height: 150.h,
+              // color: Color(darkColorScheme.background.value),
+            ),
+            HeightSpacer(height: 5.h),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                      foregroundColor: userPressSignup
-                          ? Color(lightColorScheme.secondary.value)
-                          : Color(darkColorScheme.background.value)),
-                  onPressed: () {
-                    // setState(() {
-                    //   if (userPressSignup == false) {
-                    //     userPressLogin = true;
-                    //   } else {
-                    //     userPressSignup = false;
-                    //   }
-                    // });
-                    setState(() {
-                      userPressSignup = !userPressSignup;
-                    });
-                    _userChoice = "signup";
-                  },
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      fontFamily: GoogleFonts.inter().fontFamily,
-                    ),
+                ReusableText(
+                  text: "ClackBox",
+                  style: TextStyle(
+                    color: Color(
+                        ThemeData.fallback().colorScheme.onBackground.value),
+                    fontSize: 64,
+                    fontWeight: FontWeight.w600,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withOpacity(0.75),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4.5),
+                      ),
+                    ],
                   ),
                 ),
-                WidthSpacer(width: 30.w),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: userPressLogin
-                        ? Color(lightColorScheme.secondary.value)
-                        : Color(darkColorScheme.background.value),
-                  ),
-                  onPressed: () {
-                    // setState(() {
-                    //   if (userPressLogin == false) {
-                    //     userPressSignup = true;
-                    //   } else {
-                    //     userPressLogin = false;
-                    //   }
-                    // });
-                    setState(() {
-                      userPressLogin = !userPressLogin;
-                    });
-                    _userChoice = "login";
-                  },
-                  child: Text(
-                    "Log in",
-                    style: TextStyle(
-                      fontFamily: GoogleFonts.inter().fontFamily,
-                    ),
+                ReusableText(
+                  text: "It's a place to share.",
+                  style: TextStyle(
+                    color: Color(lightColorScheme.background.value),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withOpacity(0.75),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4.5),
+                      ),
+                    ],
                   ),
                 ),
+                HeightSpacer(height: 20.h),
+                ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          height: 400.h,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text("Login here"),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: Size(250.w, 50.h)),
+                                    ),
+                                  ],
+                                ),
+                                HeightSpacer(height: 20.h),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text("Register here"),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: Size(250.w, 50.h)),
+                                    ),
+                                  ],
+                                ),
+                                HeightSpacer(height: 20.h),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text("Continue Without Login"),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: Size(250.w, 50.h)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Text("Get Started"),
+                  style: ElevatedButton.styleFrom(fixedSize: Size(150.w, 70.h)),
+                )
               ],
             ),
-          ),
-          HeightSpacer(height: 1.h),
-          HeightSpacer(height: 20.h),
-          ReusableText(
-            text: "With",
-            style: TextStyle(
-              color: Color(darkColorScheme.background.value),
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          HeightSpacer(height: 20.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BigRoundButton(
-                imageAuth: const AssetImage('assets/onboard/google-logo.png'),
-                color: Color(darkColorScheme.background.value),
-                text: "Google",
-                onTap: () {},
-              ),
-              WidthSpacer(width: 10.w),
-              BigRoundButton(
-                imageAuth: const AssetImage('assets/onboard/mail.png'),
-                text: "Email",
-                textColor: Color(darkColorScheme.background.value),
-                onTap: () {
-                  if (_userChoice == "login") {
-                    context.router.push(const LoginRoute());
-                  } else if (_userChoice == "signup") {
-                    context.router.push(SignUpRoute());
-                  } else {
-                    print("No user choice");
-                  }
-                },
-                color: Color(darkColorScheme.outline.value),
-                imgColor: Color(darkColorScheme.background.value),
-              ),
-            ],
-          ),
-          HeightSpacer(height: 20.h),
-          TextButton(
-              onPressed: () {},
-              child: Text(
-                "Continue as Guest",
-                style: TextStyle(
-                  color: Color(darkColorScheme.outline.value),
-                  fontSize: 16,
-                  // fontWeight: FontWeight.w600,
-                ),
-              ))
-        ],
+          ],
+        ),
       ),
     );
   }

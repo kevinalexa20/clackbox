@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:clackbox/common/constants/appwrite_constants.dart';
+import 'package:clackbox/common/services/appwrite_client.dart';
 import 'package:clackbox/features/Auth/data/models/login_model.dart';
 import 'package:clackbox/features/Auth/data/models/register_model.dart';
 import 'package:clackbox/features/Auth/data/models/user_model.dart';
@@ -8,7 +9,8 @@ import 'package:dartz/dartz.dart';
 
 class AuthRemoteDatasource {
   late Account _account;
-  late Databases _databases;
+  final Databases _databases = Databases(AppWriteClient().client);
+  // late Databases _databases;
 
   AuthRemoteDatasource(Account account, Databases databases) {
     _account = account;
@@ -16,17 +18,18 @@ class AuthRemoteDatasource {
 
   Future<Unit> createAccount(RegisterModel registerModel) async {
     await _account.create(
+      userId: ID.unique(),
       email: registerModel.email,
       password: registerModel.password,
-      userId: ID.unique(),
+      name: registerModel.name,
     );
     return unit;
   }
 
   Future<Unit> saveAccount(String userId, RegisterModel registerModel) async {
     await _databases.createDocument(
-      databaseId: AppWriteConstants.usersDbId,
-      collectionId: AppWriteConstants.usersDetailsId,
+      databaseId: AppWriteConstants.databaseID,
+      collectionId: AppWriteConstants.usersDetailsCollectionId,
       documentId: userId,
       data: {
         'userId': userId,
@@ -57,8 +60,8 @@ class AuthRemoteDatasource {
     // );
 
     final documents = await _databases.getDocument(
-      databaseId: AppWriteConstants.usersDbId,
-      collectionId: AppWriteConstants.usersDetailsId,
+      databaseId: AppWriteConstants.databaseID,
+      collectionId: AppWriteConstants.usersDetailsCollectionId,
       documentId: userId,
     );
     return UserModel.fromJson(documents.data);

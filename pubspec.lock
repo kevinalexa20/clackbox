@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "11.0.1"
+  appwrite_auth_kit:
+    dependency: "direct main"
+    description:
+      name: appwrite_auth_kit
+      sha256: dfd23e58f486388cad5bb93adebd0de64ecd220af7f68b2356dff817b0636fc2
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.0"
   args:
     dependency: transitive
     description:

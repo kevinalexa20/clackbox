@@ -5,6 +5,7 @@ import 'package:clackbox/features/Auth/presentation/pages/signup_page.dart';
 import 'package:clackbox/features/homescreen/presentation/pages/home_page.dart';
 import 'package:clackbox/features/onboarding/presentation/pages/onboarding.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/page_one.dart';
+import 'package:clackbox/features/onboarding/presentation/widgets/page_three.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/page_two.dart';
 import 'package:flutter/material.dart';
 

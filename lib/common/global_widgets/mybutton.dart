@@ -2,20 +2,18 @@ import 'package:clackbox/common/constants/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BigRoundButton extends StatelessWidget {
+class MyButton extends StatelessWidget {
   final String text;
   final Function()? onTap;
   final Color? color;
   final Color? imgColor;
   final Color? textColor;
-  final ImageProvider<Object>? imageAuth;
 
-  const BigRoundButton(
+  const MyButton(
       {super.key,
       required this.text,
       this.onTap,
       this.color,
-      required this.imageAuth,
       this.imgColor,
       this.textColor});
 
@@ -25,7 +23,7 @@ class BigRoundButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 172,
-        height: 137,
+        height: 100,
         decoration: BoxDecoration(
           // color: color ??
           //     Color(Theme.of(context).brightness == Brightness.light
@@ -47,13 +45,6 @@ class BigRoundButton extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.h),
-                child: Image(
-                  image:
-                      imageAuth ?? const AssetImage('assets/onboard/login.png'),
-                  width: 50.w,
-                  height: 50.h,
-                  color: imgColor,
-                ),
               ),
               Text(
                 text,

@@ -4,7 +4,7 @@ import 'package:clackbox/common/constants/constants.dart';
 
 class AppWriteClient {
   Client client = Client();
-
+  Databases database = Databases(Client());
   Account? account;
 
   AppWriteClient() {
@@ -13,14 +13,15 @@ class AppWriteClient {
         .setProject(AppWriteConstants.projectID)
         .setSelfSigned(status: true); //for local testing
     account = Account(client);
+    database = Databases(client);
   }
 
-  Future<models.User> signup(Map map) async {
-    final response = account!.create(
-        userId: map['userId'],
-        email: map['email'],
-        password: map['password'],
-        name: map['name']);
-    return response;
-  }
+  // Future<models.User> signup(Map map) async {
+  //   final response = account!.create(
+  //       userId: map['userId'],
+  //       email: map['email'],
+  //       password: map['password'],
+  //       name: map['name']);
+  //   return response;
+  // }
 }

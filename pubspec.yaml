@@ -49,6 +49,7 @@ dependencies:
   fpdart: ^1.1.0
   dartz: ^0.10.1
   flutter_secure_storage: ^9.0.0
+  appwrite_auth_kit: ^0.9.0
   
   
 

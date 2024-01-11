@@ -17,7 +17,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 @RoutePage()
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
-
+  
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
       body: BlocConsumer<AuthBloc, AuthState>(
-        key: _formKey,
+        // key: _formKey,
         listener: _authBlocListener,
         bloc: _authBloc,
         builder: (context, state) {
@@ -287,26 +287,27 @@ class _SignUpPageState extends State<SignUpPage> {
 
     if (state.userModel != null) {
       SnackBarUtils.defualtSnackBar('Success!', context);
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute<void>(
-              builder: (BuildContext context) => const OnBoardingPage()),
-          ModalRoute.withName('/'));
+      context.router.push(HomeRoute());
+      // Navigator.pushAndRemoveUntil(
+      //     context,
+      //     MaterialPageRoute<void>(
+      //         builder: (BuildContext context) => const OnBoardingPage()),
+      //     ModalRoute.withName('/'));
     }
   }
 
   void _register(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
-      _authBloc.add(
-        AuthRegisterEvent(
-          registerModel: RegisterModel(
-            email: _emailController.text,
-            password: _passwordController.text,
-            confirmPassword: _confirmPasswordController.text,
-            name: _nameController.text,
-          ),
+    // if (_formKey.currentState!.validate()) {
+    _authBloc.add(
+      AuthRegisterEvent(
+        registerModel: RegisterModel(
+          email: _emailController.text,
+          password: _passwordController.text,
+          confirmPassword: _confirmPasswordController.text,
+          name: _nameController.text,
         ),
-      );
-    }
+      ),
+    );
   }
+  // }
 }
