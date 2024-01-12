@@ -39,10 +39,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const PageOne(),
       );
     },
-    RouteTwo.name: (routeData) {
+    RouteThree.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const PageTwo(),
+        child: const PageThree(),
       );
     },
     SignUpRoute.name: (routeData) {
@@ -111,15 +111,15 @@ class RouteOne extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [PageTwo]
-class RouteTwo extends PageRouteInfo<void> {
-  const RouteTwo({List<PageRouteInfo>? children})
+/// [PageThree]
+class RouteThree extends PageRouteInfo<void> {
+  const RouteThree({List<PageRouteInfo>? children})
       : super(
-          RouteTwo.name,
+          RouteThree.name,
           initialChildren: children,
         );
 
-  static const String name = 'RouteTwo';
+  static const String name = 'RouteThree';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
