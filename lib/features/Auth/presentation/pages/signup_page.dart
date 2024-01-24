@@ -17,7 +17,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 @RoutePage()
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
-  
+
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -46,67 +46,6 @@ class _SignUpPageState extends State<SignUpPage> {
     _nameController.dispose();
     super.dispose();
   }
-
-  // Future<void> login(String email, String password) async {
-  //   await widget.account.createEmailSession(email: email, password: password);
-  //   final user = await widget.account.get();
-  //   setState(() {
-  //     loggedInUser = user;
-  //   });
-  // }
-
-  // Future<void> register(String email, String password, String name) async {
-  //   // loading circle
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) => const Center(
-  //       child: CircularProgressIndicator(),
-  //     ),
-  //   );
-  //   // konfirmasi passwordnya sama
-  //   if (_passwordController.text != _confirmPasswordController.text) {
-  //     //loading circle
-  //     Navigator.pop(context);
-  //     // error message
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(
-  //         content: Text("Password tidak sama"),
-  //       ),
-  //     );
-  //   }
-  //   await widget.account.create(
-  //       userId: ID.unique(), email: email, password: password, name: name);
-  //   await login(email, password);
-  // }
-
-  // Future<void> logout() async {
-  //   await widget.account.deleteSession(sessionId: 'current');
-  //   setState(() {
-  //     loggedInUser = null;
-  //   });
-  // }
-
-  // //register user method
-  // Future<void> registerUser() async {
-  //   // loading circle
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) => const Center(
-  //       child: CircularProgressIndicator(),
-  //     ),
-  //   );
-  //   // konfirmasi passwordnya sama
-  //   if (_passwordController.text != _confirmPasswordController.text) {
-  //     //loading circle
-  //     Navigator.pop(context);
-  //     // error message
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(
-  //         content: Text("Password tidak sama"),
-  //       ),
-  //     );
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       width: 100.w,
                       height: 100.h,
-                      color: Color(darkColorScheme.primary.value),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   HeightSpacer(height: 10.h),
@@ -167,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  HeightSpacer(height: 100.h),
+                  HeightSpacer(height: 70.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: Column(
@@ -233,7 +172,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.router.push(const LoginRoute());
+                              },
                               child: const Text(
                                 'Already have an account? Login Here',
                                 style: TextStyle(
@@ -244,7 +185,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ],
                         ),
-                        HeightSpacer(height: 50.h),
+                        HeightSpacer(height: 20.h),
                         SizedBox(
                           width: double.infinity,
                           height: 50.h,
@@ -253,18 +194,21 @@ class _SignUpPageState extends State<SignUpPage> {
                               _register(context);
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Color(darkColorScheme.primary.value),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            child: const Text(
+                            child: Text(
                               'Sign Up',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
                             ),
                           ),
                         ),

@@ -121,16 +121,14 @@ class _PageTwoState extends State<PageTwo> {
                                       ),
                                       child: Text(
                                         "Login here",
-                                        style: TextStyle(
-                                          color: MediaQuery.of(context)
-                                                  .platformBrightness
-                                                  .toString()
-                                                  .contains("dark")
-                                              ? Color(darkColorScheme
-                                                  .onBackground.value)
-                                              : Color(lightColorScheme
-                                                  .onBackground.value),
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -157,16 +155,14 @@ class _PageTwoState extends State<PageTwo> {
                                       ),
                                       child: Text(
                                         "Register here",
-                                        style: TextStyle(
-                                          color: MediaQuery.of(context)
-                                                  .platformBrightness
-                                                  .toString()
-                                                  .contains("dark")
-                                              ? Color(darkColorScheme
-                                                  .onBackground.value)
-                                              : Color(lightColorScheme
-                                                  .onBackground.value),
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -177,7 +173,8 @@ class _PageTwoState extends State<PageTwo> {
                                   children: [
                                     ElevatedButton(
                                       onPressed: () {
-                                        context.router.push(const HomeRoute());
+                                        context.router
+                                            .push(const BottomNavbarRoute());
                                       },
                                       style: ElevatedButton.styleFrom(
                                         fixedSize: Size(250.w, 50.h),
@@ -186,22 +183,20 @@ class _PageTwoState extends State<PageTwo> {
                                                 .toString()
                                                 .contains("dark")
                                             ? Color(
-                                                darkColorScheme.primary.value)
-                                            : Color(
-                                                lightColorScheme.primary.value),
+                                                darkColorScheme.secondary.value)
+                                            : Color(lightColorScheme
+                                                .secondary.value),
                                       ),
                                       child: Text(
                                         "Continue Without Login",
-                                        style: TextStyle(
-                                          color: MediaQuery.of(context)
-                                                  .platformBrightness
-                                                  .toString()
-                                                  .contains("dark")
-                                              ? Color(darkColorScheme
-                                                  .background.value)
-                                              : Color(lightColorScheme
-                                                  .background.value),
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineMedium
+                                            ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -214,7 +209,7 @@ class _PageTwoState extends State<PageTwo> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(150.w, 70.h),
+                    fixedSize: Size(170.w, 60.h),
                     backgroundColor: MediaQuery.of(context)
                             .platformBrightness
                             .toString()
@@ -229,8 +224,8 @@ class _PageTwoState extends State<PageTwo> {
                               .platformBrightness
                               .toString()
                               .contains("dark")
-                          ? Color(darkColorScheme.onBackground.value)
-                          : Color(lightColorScheme.onBackground.value),
+                          ? Color(darkColorScheme.background.value)
+                          : Color(lightColorScheme.background.value),
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),

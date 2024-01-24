@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'common/constants/constants.dart';
 
 void main() async {
+  await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
   // Client client = Client();
   // Databases database = Databases(Client());
@@ -40,8 +41,9 @@ class _MyAppState extends State<MyApp> {
       ],
       child: ScreenUtilInit(
           useInheritedMediaQuery: true,
-          designSize: const Size(375, 825),
+          designSize: const Size(393, 852),
           minTextAdapt: true,
+          splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp.router(
               // builder: (context, widget) {
@@ -59,14 +61,14 @@ class _MyAppState extends State<MyApp> {
                 colorScheme: lightColorScheme,
                 useMaterial3: true,
                 textTheme: lightTextTheme,
-                fontFamily: GoogleFonts.poppins().fontFamily,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
               darkTheme: ThemeData(
                 brightness: Brightness.dark,
                 colorScheme: darkColorScheme,
                 useMaterial3: true,
                 textTheme: darkTextTheme,
-                fontFamily: GoogleFonts.poppins().fontFamily,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
               // home: const OnBoarding(),
             );

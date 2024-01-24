@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clackbox/common/constants/app_color_scheme.dart';
+import 'package:clackbox/common/constants/app_text_theme.dart';
 import 'package:clackbox/common/constants/height_spacer.dart';
 import 'package:clackbox/common/dependency_injection/di_container.dart';
 import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -40,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,28 +69,25 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
                 child: Image(
-                  image: const AssetImage(
-                    'assets/onboard/CB-logo-outline-white.png',
-                  ),
-                  width: 100.w,
-                  height: 100.h,
-                  color: Color(darkColorScheme.primary.value),
-                ),
+                    image: const AssetImage(
+                      'assets/onboard/CB-logo-outline-white.png',
+                    ),
+                    width: 100.w,
+                    height: 100.h,
+                    color: Theme.of(context).colorScheme.primary),
               ),
               HeightSpacer(height: 10.h),
-              const Text(
+              Text(
                 'Welcome Back!',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
               ),
-              const Text(
+              Text(
                 'Login to your account',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               HeightSpacer(height: 100.h),
               Padding(
@@ -98,10 +97,12 @@ class _LoginPageState extends State<LoginPage> {
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'Email',
-                        hintStyle: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        hintStyle:
+                            Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -111,16 +112,18 @@ class _LoginPageState extends State<LoginPage> {
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'Password',
-                        hintStyle: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        hintStyle:
+                            Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                     ),
-                    HeightSpacer(height: 5.h),
+                    HeightSpacer(height: 1.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -136,23 +139,26 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                    HeightSpacer(height: 50.h),
+                    HeightSpacer(height: 5.h),
                     Container(
                         width: double.infinity,
                         height: 50,
                         decoration: BoxDecoration(
-                          color: Color(lightColorScheme.primary.value),
+                          color: Theme.of(context).colorScheme.primary,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: TextButton(
-                            onPressed: () {
-                              
-                            },
-                            child: const Text('Login',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ))))
+                            onPressed: () {},
+                            child: Text(
+                              'Login',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                            )))
                   ],
                 ),
               ),
