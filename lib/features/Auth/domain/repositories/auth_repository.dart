@@ -1,3 +1,4 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:appwrite/models.dart';
 import 'package:clackbox/common/services/appwrite_client.dart';
@@ -9,6 +10,7 @@ import 'package:clackbox/features/Auth/data/models/user_model.dart';
 import 'package:dartz/dartz.dart';
 
 class AuthRepository {
+  // late AppWriteClient _appWriteClient;
   late AuthRemoteDatasource _remoteDatasource;
   late AuthLocalDataSource _localDataSource;
 
@@ -28,7 +30,7 @@ class AuthRepository {
       //save session id
       _localDataSource.saveSessionId(session.$id);
 
-      //get user
+      // get user
       final UserModel userModel =
           await _remoteDatasource.getUser(session.userId);
 
@@ -43,7 +45,16 @@ class AuthRepository {
       RegisterModel registerModel) async {
     try {
       //First Create account for Login
+
+      // await _remoteDatasource.createAccount(
+      //     registerModel.email, registerModel.password);
       await _remoteDatasource.createAccount(registerModel);
+
+      // await _appWriteClient.account.create(
+      //   userId: ID.unique(),
+      //   email: registerModel.email,
+      //   password: registerModel.password,
+      // );
 
       //Todo: Get session from appwrite
       //Login to get userId
@@ -58,8 +69,7 @@ class AuthRepository {
       //Save User Data to database
       await _remoteDatasource.saveAccount(session.userId, registerModel);
 
-      //get User Data
-
+      // get User Data
       final UserModel authUserModel =
           await _remoteDatasource.getUser(session.userId);
 
@@ -70,28 +80,28 @@ class AuthRepository {
     }
   }
 
-  Future<Either<String, UserModel?>> autoLogin() async {
-    try {
-      //Get session id from Local datasource
-      final String? sessionId = await _localDataSource.getSessionId();
+  // Future<Either<String, UserModel?>> autoLogin() async {
+  //   try {
+  //     //Get session id from Local datasource
+  //     final String? sessionId = await _localDataSource.getSessionId();
 
-      //if null return Right(null)
-      if (sessionId == null) return const Right(null);
+  //     //if null return Right(null)
+  //     if (sessionId == null) return const Right(null);
 
-      //else getSession
-      final Session session = await _remoteDatasource.getSessionId(sessionId);
+  //     //else getSession
+  //     final Session session = await _remoteDatasource.getSessionId(sessionId);
 
-      // should pass user id
-      //get User Data
-      final UserModel authUserModel =
-          await _remoteDatasource.getUser(session.userId);
+  //     // should pass user id
+  //     //get User Data
+  //     final UserModel authUserModel =
+  //         await _remoteDatasource.getUser(session.userId);
 
-      //return Auth User Model
-      return Right(authUserModel);
-    } catch (e) {
-      return Left(e.toString());
-    }
-  }
+  //     //return Auth User Model
+  //     return Right(authUserModel);
+  //   } catch (e) {
+  //     return Left(e.toString());
+  //   }
+  // }
 
   Future<Either<String, Unit>> logout() async {
     try {

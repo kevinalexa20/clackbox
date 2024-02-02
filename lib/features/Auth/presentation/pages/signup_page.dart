@@ -1,18 +1,9 @@
-import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/constants/app_color_scheme.dart';
-import 'package:clackbox/common/constants/height_spacer.dart';
-import 'package:clackbox/common/enum/state_status_enum.dart';
-import 'package:clackbox/common/global_widgets/snakbar_widget.dart';
-import 'package:clackbox/common/routes/app_router.dart';
-import 'package:clackbox/features/Auth/data/models/register_model.dart';
-import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
-import 'package:clackbox/features/Auth/presentation/widgets/loading_widget.dart';
-import 'package:clackbox/features/onboarding/presentation/pages/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../constants.dart';
 
 @RoutePage()
 class SignUpPage extends StatefulWidget {
@@ -67,33 +58,34 @@ class _SignUpPageState extends State<SignUpPage> {
         bloc: _authBloc,
         builder: (context, state) {
           if (state.stateStatus == StateStatus.loading) {
-            return LoadingWidget();
+            return const LoadingWidget();
           }
           return Container(
-            key: _formKey,
             width: double.infinity,
             height: double.infinity,
-            // color: Color(lightColorScheme.background.value),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
-                    child: Image(
-                      image: const AssetImage(
-                        'assets/onboard/CB-logo-outline-white.png',
+                  Form(
+                    key: _formKey,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
+                      child: Image(
+                        image: const AssetImage(
+                          'assets/onboard/CB-logo-outline-white.png',
+                        ),
+                        width: 100.w,
+                        height: 100.h,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                      width: 100.w,
-                      height: 100.h,
-                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   HeightSpacer(height: 10.h),
                   const Text(
-                    'Welcome Back!',
+                    'Welcome!',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
@@ -154,20 +146,20 @@ class _SignUpPageState extends State<SignUpPage> {
                           obscureText: true,
                         ),
                         HeightSpacer(height: 5.h),
-                        TextField(
-                          controller: _confirmPasswordController,
-                          decoration: InputDecoration(
-                            hintText: 'Confirm your password',
-                            hintStyle: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        HeightSpacer(height: 5.h),
+                        // TextField(
+                        //   controller: _confirmPasswordController,
+                        //   decoration: InputDecoration(
+                        //     hintText: 'Confirm your password',
+                        //     hintStyle: const TextStyle(
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.w400,
+                        //     ),
+                        //     border: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(10),
+                        //     ),
+                        //   ),
+                        // ),
+                        // HeightSpacer(height: 5.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -232,26 +224,25 @@ class _SignUpPageState extends State<SignUpPage> {
     if (state.userModel != null) {
       SnackBarUtils.defualtSnackBar('Success!', context);
       context.router.push(HomeRoute());
-      // Navigator.pushAndRemoveUntil(
-      //     context,
-      //     MaterialPageRoute<void>(
-      //         builder: (BuildContext context) => const OnBoardingPage()),
-      //     ModalRoute.withName('/'));
     }
   }
 
   void _register(BuildContext context) {
-    // if (_formKey.currentState!.validate()) {
-    _authBloc.add(
-      AuthRegisterEvent(
-        registerModel: RegisterModel(
-          email: _emailController.text,
-          password: _passwordController.text,
-          confirmPassword: _confirmPasswordController.text,
-          name: _nameController.text,
-        ),
-      ),
-    );
+    if (_formKey.currentState!.validate()) {
+      _authBloc.add(
+          // AuthRegisterEvent(
+          //   userModel: UserModel(
+          //     email: _emailController.text,
+          //     password: _passwordController.text,
+          //     // confirmPassword: _confirmPasswordController.text,
+          //   ),
+          // ),
+          AuthRegisterEvent(
+              registerModel: RegisterModel(
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text,
+      )));
+    }
   }
-  // }
 }

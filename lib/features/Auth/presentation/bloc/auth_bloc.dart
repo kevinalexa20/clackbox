@@ -15,61 +15,73 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  final AppWriteClient _appWriteClient = AppWriteClient();
+
   AuthBloc(AuthRepository authRepository) : super(AuthState.initial()) {
     on<AuthEvent>((event, emit) {
       // TODO: implement event handler
     });
 
-    on<AuthAutoLoginEvent>((event, emit) async {
-      final Either<String, UserModel?> result =
-          await authRepository.autoLogin();
+    on<AuthRegisterEvent>(
+      (event, emit) async {
+        emit(state.copyWith(stateStatus: StateStatus.loading));
+        //either <String = pesan error jika event(registrasi gagal), UserModel = data model user ditampilkan>
+        final Either<String, UserModel> result =
+            // await authRepository.register(event.userModel);
+            // await authRepository.register(event.registerModel);
+            await authRepository.register(event.registerModel);
 
-      result.fold((error) {
-        emit(state.copyWith(
-            stateStatus: StateStatus.error, errorMessage: error));
-      }, (userModel) {
-        emit(state.copyWith(
-            stateStatus: StateStatus.loaded, userModel: userModel));
-      });
-    });
-    on<AuthLoginEvent>((event, emit) async {
-      emit(state.copyWith(stateStatus: StateStatus.loading));
-      final Either<String, UserModel> result =
-          await authRepository.login(event.loginModel);
+        //fold dari package dartz ini untuk menangani error dan success, jika error maka akan dijalankan fungsi (error), jika success maka akan dijalankan fungsi (userModel)
+        result.fold((error) {
+          emit(state.copyWith(
+              stateStatus: StateStatus.error, errorMessage: error));
 
-      result.fold((error) {
-        emit(state.copyWith(
-            stateStatus: StateStatus.error, errorMessage: error));
+          emit(state.copyWith(stateStatus: StateStatus.loaded));
+        }, (userModel) {
+          emit(state.copyWith(
+            stateStatus: StateStatus.loaded,
+            userModel: userModel,
+          ));
+        });
+        //print utk debugging
+        print(result);
+      },
+    );
 
-        emit(state.copyWith(stateStatus: StateStatus.loaded));
-      }, (userModel) {
-        emit(state.copyWith(
-          stateStatus: StateStatus.loaded,
-          userModel: userModel,
-        ));
-      });
-    });
-    on<AuthRegisterEvent>((event, emit) async {
-      emit(state.copyWith(stateStatus: StateStatus.loading));
-      //either <String = pesan error jika event(registrasi gagal), UserModel = data model user ditampilkan>
-      final Either<String, UserModel> result =
-          await authRepository.register(event.registerModel);
+    on<AuthLoginEvent>(
+      (event, emit) async {
+        emit(state.copyWith(stateStatus: StateStatus.loading));
+        final Either<String, UserModel> result =
+            await authRepository.login(event.loginModel);
 
-      //fold dari package dartz ini untuk menangani error dan success, jika error maka akan dijalankan fungsi (error), jika success maka akan dijalankan fungsi (userModel)
-      result.fold((error) {
-        emit(state.copyWith(
-            stateStatus: StateStatus.error, errorMessage: error));
+        result.fold((error) {
+          emit(state.copyWith(
+              stateStatus: StateStatus.error, errorMessage: error));
 
-        emit(state.copyWith(stateStatus: StateStatus.loaded));
-      }, (userModel) {
-        emit(state.copyWith(
-          stateStatus: StateStatus.loaded,
-          userModel: userModel,
-        ));
-      });
-      //print utk debugging
-      print(result);
-    });
+          emit(state.copyWith(stateStatus: StateStatus.loaded));
+        }, (userModel) {
+          emit(state.copyWith(
+            stateStatus: StateStatus.loaded,
+            userModel: userModel,
+          ));
+        });
+      },
+    );
+
+    // on<AuthAutoLoginEvent>(
+    //   (event, emit) async {
+    //     final Either<String, UserModel?> result =
+    //         await authRepository.autoLogin();
+
+    //     result.fold((error) {
+    //       emit(state.copyWith(
+    //           stateStatus: StateStatus.error, errorMessage: error));
+    //     }, (userModel) {
+    //       emit(state.copyWith(
+    //           stateStatus: StateStatus.loaded, userModel: userModel));
+    //     });
+    //   },
+    // );
 
     on<AuthLogoutEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));

@@ -1,4 +1,3 @@
-import 'package:clackbox/common/constants/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 class LoadingWidget extends StatelessWidget {

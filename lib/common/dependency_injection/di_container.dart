@@ -1,8 +1,5 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:clackbox/common/constants/constants.dart';
-import 'package:clackbox/features/Auth/data/datasources/auth_local.datasource.dart';
-import 'package:clackbox/features/Auth/data/datasources/auth_remote.datasource.dart';
-import 'package:clackbox/features/Auth/domain/repositories/auth_repository.dart';
 import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -24,7 +21,7 @@ class DIContainer {
       AuthLocalDataSource(_secureStorage);
   //Remote Datasoure
   AuthRemoteDatasource get _remoteDatasource =>
-      AuthRemoteDatasource(_account, _databases);
+      AuthRemoteDatasource(_account, _databases, _client);
 
   //repository
   AuthRepository get _authRepository =>

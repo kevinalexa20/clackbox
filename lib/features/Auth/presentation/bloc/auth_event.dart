@@ -39,9 +39,11 @@ abstract class AuthEvent extends Equatable {
 
 class AuthRegisterEvent extends AuthEvent {
   final RegisterModel registerModel;
+  // final UserModel userModel;
 
-  AuthRegisterEvent({
+  const AuthRegisterEvent({
     required this.registerModel,
+    // required this.userModel,
   });
 }
 
@@ -49,7 +51,7 @@ class AuthRegisterEvent extends AuthEvent {
 class AuthLoginEvent extends AuthEvent {
   final LoginModel loginModel;
 
-  AuthLoginEvent({
+  const AuthLoginEvent({
     required this.loginModel,
   });
 }

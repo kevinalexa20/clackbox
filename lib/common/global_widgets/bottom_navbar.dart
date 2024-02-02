@@ -21,7 +21,7 @@ class _BottomNavbarPageState extends State<BottomNavbarPage> {
     });
   }
 
-  final pages = [const HomePage(), Container(), Container()];
+  final pages = [ HomePage(), Container(), Container()];
 
   @override
   Widget build(BuildContext context) {
