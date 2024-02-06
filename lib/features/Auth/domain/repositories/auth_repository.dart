@@ -1,7 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:appwrite/models.dart';
-import 'package:clackbox/common/services/appwrite_client.dart';
 import 'package:clackbox/features/Auth/data/datasources/auth_local.datasource.dart';
 import 'package:clackbox/features/Auth/data/datasources/auth_remote.datasource.dart';
 import 'package:clackbox/features/Auth/data/models/login_model.dart';
@@ -45,16 +44,7 @@ class AuthRepository {
       RegisterModel registerModel) async {
     try {
       //First Create account for Login
-
-      // await _remoteDatasource.createAccount(
-      //     registerModel.email, registerModel.password);
       await _remoteDatasource.createAccount(registerModel);
-
-      // await _appWriteClient.account.create(
-      //   userId: ID.unique(),
-      //   email: registerModel.email,
-      //   password: registerModel.password,
-      // );
 
       //Todo: Get session from appwrite
       //Login to get userId

@@ -53,7 +53,6 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
       body: BlocConsumer<AuthBloc, AuthState>(
-        // key: _formKey,
         listener: _authBlocListener,
         bloc: _authBloc,
         builder: (context, state) {
@@ -230,13 +229,6 @@ class _SignUpPageState extends State<SignUpPage> {
   void _register(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _authBloc.add(
-          // AuthRegisterEvent(
-          //   userModel: UserModel(
-          //     email: _emailController.text,
-          //     password: _passwordController.text,
-          //     // confirmPassword: _confirmPasswordController.text,
-          //   ),
-          // ),
           AuthRegisterEvent(
               registerModel: RegisterModel(
         email: _emailController.text,

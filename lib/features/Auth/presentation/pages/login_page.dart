@@ -56,10 +56,12 @@ class _LoginPageState extends State<LoginPage> {
         listener: _authBlocListener,
         bloc: _authBloc,
         builder: (context, state) {
+          if (state.stateStatus == StateStatus.loading) {
+            return _loadingWidget();
+          }
           return Container(
             width: double.infinity,
             height: double.infinity,
-            // color: Color(lightColorScheme.background.value),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -98,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: [
                         TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             hintText: 'Email',
                             hintStyle:
@@ -113,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         HeightSpacer(height: 5.h),
                         TextField(
+                          controller: _passwordController,
                           decoration: InputDecoration(
                             hintText: 'Password',
                             hintStyle:
@@ -125,6 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
+                          obscureText: true,
                         ),
                         HeightSpacer(height: 1.h),
                         Row(
@@ -143,28 +148,6 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                         HeightSpacer(height: 5.h),
-                        // Container(
-                        //   width: double.infinity,
-                        //   height: 50,
-                        //   decoration: BoxDecoration(
-                        //     color: Theme.of(context).colorScheme.primary,
-                        //     borderRadius: BorderRadius.circular(10),
-                        //   ),
-                        //   child: TextButton(
-                        //     onPressed: () {
-                        //       _login(context);
-                        //     },
-                        //     child: Text(
-                        //       'Login',
-                        //       style: Theme.of(context)
-                        //           .textTheme
-                        //           .headlineMedium
-                        //           ?.copyWith(
-                        //             color: Theme.of(context).colorScheme.onPrimary,
-                        //           ),
-                        //     ),
-                        //   ),
-                        // ),
                         SizedBox(
                           width: double.infinity,
                           height: 50.h,
@@ -210,26 +193,6 @@ class _LoginPageState extends State<LoginPage> {
 
     if (state.userModel != null) {
       SnackBarUtils.defualtSnackBar('Login Success!', context);
-      // Navigator.pushAndRemoveUntil(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => MultiBlocProvider(
-      //                 providers: [
-      //                   BlocProvider<AuthBloc>(
-      //                     create: (BuildContext context) =>
-      //                         diContainer.authBloc,
-      //                   ),
-
-      //                   // BlocProvider<TodoBloc>(
-      //                   //     create: (BuildContext context) =>
-      //                   //         diContainer.todoBloc)
-      //                 ],
-      //                 child: HomePage(
-      //                   userModel: state.userModel!,
-      //                 ))),
-      //     ModalRoute.withName('/'));
-
-      // context.router.pushAndPopUntil(HomeRoute(), predicate: (route) => false);
       context.router.push(HomeRoute());
     }
   }
@@ -245,7 +208,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     }
-    clearText();
+    // clearText();
   }
 
   Widget _loadingWidget() {

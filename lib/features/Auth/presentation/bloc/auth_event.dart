@@ -10,40 +10,11 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-// event untuk sign up
-// class SignUpEvent extends AuthEvent {
-//   final String email;
-//   final String password;
-//   final String name;
-
-//   SignUpEvent({
-//     required this.email,
-//     required this.password,
-//     required this.name,
-//   });
-
-//   @override
-//   List<Object> get props => [email, password, name];
-// }
-
-// class SignUpEvent extends AuthEvent {
-//   Future<User> signup(Map map) async {
-//     final response = appWriteClient.account!.create(
-//         userId: map['userId'],
-//         email: map['email'],
-//         password: map['password'],
-//         name: map['name']);
-//     return response;
-//   }
-// }
-
 class AuthRegisterEvent extends AuthEvent {
   final RegisterModel registerModel;
-  // final UserModel userModel;
 
   const AuthRegisterEvent({
     required this.registerModel,
-    // required this.userModel,
   });
 }
 
