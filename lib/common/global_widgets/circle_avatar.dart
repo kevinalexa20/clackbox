@@ -1,3 +1,4 @@
+import 'package:clackbox/common/constants/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 class MyCircleAvatar extends StatelessWidget {
@@ -17,10 +18,15 @@ class MyCircleAvatar extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: backgroundColor,
       radius: radius,
-      child: const Icon(
+      child: Icon(
         Icons.person,
         size: 18,
-        color: Colors.white,
+        color: MediaQuery.of(context)
+                .platformBrightness
+                .toString()
+                .contains("dark")
+            ? Color(darkColorScheme.primary.value)
+            : Color(lightColorScheme.primary.value),
       ),
     );
   }
