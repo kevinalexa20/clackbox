@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/constants/app_color_scheme.dart';
+import 'package:clackbox/common/global_widgets/custom_bottom_navbar.dart';
 import 'package:clackbox/features/Home/presentation/pages/home_page.dart';
-// import 'package:clackbox/features/homescreen/presentation/pages/home_page.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -22,75 +20,17 @@ class _BottomNavbarPageState extends State<BottomNavbarPage> {
     });
   }
 
-  final pages = [ HomePage(), Container(), Container()];
+  final pages = [HomePage(), Container(), Container()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       body: pages[_currentIndex],
-      bottomNavigationBar: DotNavigationBar(
-        paddingR: const EdgeInsets.only(bottom: 5, top: 5),
-        marginR: const EdgeInsets.symmetric(horizontal: 70, vertical: 0),
+      bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: _currentIndex,
+        pages: pages,
         onTap: changePage,
-        backgroundColor: MediaQuery.of(context)
-                .platformBrightness
-                .toString()
-                .contains("dark")
-            ? Color(darkColorScheme.surfaceVariant.value)
-            : Color(lightColorScheme.surfaceVariant.value),
-        dotIndicatorColor: Colors.transparent,
-        items: [
-          //HOME
-          DotNavigationBarItem(
-            icon: const Icon(Icons.home),
-            selectedColor: MediaQuery.of(context)
-                    .platformBrightness
-                    .toString()
-                    .contains("dark")
-                ? Color(darkColorScheme.onPrimary.value)
-                : Color(lightColorScheme.onTertiaryContainer.value),
-            unselectedColor: MediaQuery.of(context)
-                    .platformBrightness
-                    .toString()
-                    .contains("dark")
-                ? Color(darkColorScheme.primary.value)
-                : Color(lightColorScheme.primary.value),
-          ),
-          //SEARCH
-          DotNavigationBarItem(
-            icon: const Icon(Icons.search),
-            selectedColor: MediaQuery.of(context)
-                    .platformBrightness
-                    .toString()
-                    .contains("dark")
-                ? Color(darkColorScheme.onPrimary.value)
-                : Color(lightColorScheme.onTertiaryContainer.value),
-            unselectedColor: MediaQuery.of(context)
-                    .platformBrightness
-                    .toString()
-                    .contains("dark")
-                ? Color(darkColorScheme.primary.value)
-                : Color(lightColorScheme.primary.value),
-          ),
-          //Notifications
-          DotNavigationBarItem(
-            icon: const Icon(Icons.notifications),
-            selectedColor: MediaQuery.of(context)
-                    .platformBrightness
-                    .toString()
-                    .contains("dark")
-                ? Color(darkColorScheme.onPrimary.value)
-                : Color(lightColorScheme.onTertiaryContainer.value),
-            unselectedColor: MediaQuery.of(context)
-                    .platformBrightness
-                    .toString()
-                    .contains("dark")
-                ? Color(darkColorScheme.primary.value)
-                : Color(lightColorScheme.primary.value),
-          ),
-        ],
       ),
     );
   }

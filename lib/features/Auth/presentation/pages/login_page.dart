@@ -193,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (state.userModel != null) {
       SnackBarUtils.defualtSnackBar('Login Success!', context);
-      context.router.push(HomeRoute());
+      context.router.push(BottomNavbarRoute());
     }
   }
 

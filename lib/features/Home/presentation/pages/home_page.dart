@@ -215,38 +215,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Padding(
-                              // padding: EdgeInsets.only(top: size.height.h * 0.3),
                               padding: const EdgeInsets.all(8.0),
-                              // child: Text(
-                              //   "${tabs[current]} Tab Content",
-                              //   style: GoogleFonts.plusJakartaSans(fontSize: 30),
-                              // ),
                               child: _buildContent(),
-                              //HOME CONTENT
-                              // current == 0
-                              //     ? ForyouScreen(tweets: tweets)
-                              //     : Text(
-                              //         "${tabs[current]} Tab Content",
-                              //         style: GoogleFonts.plusJakartaSans(
-                              //             fontSize: 30),
-                              //       ),
-
-                              // Widget tabContent;
-                              // if (current == 0) {
-                              //   tabContent = ForyouScreen(tweets: tweets);
-                              // } else if (current == 1) {
-                              //   tabContent = FollowingScreen();
-                              // } else if (current == 2) {
-                              //   tabContent = FlexScreen();
-                              // } else if (current == 3) {
-                              //   tabContent = PopularScreen();
-                              // } else {
-                              //   tabContent = Text(
-                              //     "${tabs[current]} Tab Content",
-                              //     style: GoogleFonts.plusJakartaSans(fontSize: 30),
-                              //   );
-                              // }
-                              // return tabContent;
+                              
                             )
                           ],
                         ),
