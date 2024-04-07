@@ -18,7 +18,24 @@ class _CreatePostPageState extends State<CreatePostPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text('Create Post'),
+        // title: const Text('Create Post'),
+        actions: [
+          TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+            ),
+            onPressed: () {
+              // Add post to database
+            },
+            child: Text(
+              'Post',
+              style: TextStyle(
+                fontSize: 14,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

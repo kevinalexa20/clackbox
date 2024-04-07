@@ -1,69 +1,59 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
+
+const textColor = Color(0xFF11181c);
+const backgroundColor = Color(0xFFebf1f5);
+const primaryColor = Color(0xFF23475c);
+const primaryFgColor = Color(0xFFebf1f5);
+const secondaryColor = Color(0xFF79b7d8);
+const secondaryFgColor = Color(0xFF11181c);
+const accentColor = Color(0xFF2480b2);
+const accentFgColor = Color(0xFFd0dbe2);
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xFF5E52A7),
-  onPrimary: Color(0xFFFFFFFF),
-  primaryContainer: Color(0xFFE5DEFF),
-  onPrimaryContainer: Color(0xFF190261),
-  secondary: Color(0xFF614DB7),
-  onSecondary: Color(0xFFFFFFFF),
-  secondaryContainer: Color(0xFFE6DEFF),
-  onSecondaryContainer: Color(0xFF1D0061),
-  tertiary: Color(0xFF503BF2),
-  onTertiary: Color(0xFFFFFFFF),
-  tertiaryContainer: Color(0xFFE3DFFF),
-  onTertiaryContainer: Color(0xFF130068),
-  error: Color(0xFFBA1A1A),
-  errorContainer: Color(0xFFFFDAD6),
-  onError: Color(0xFFFFFFFF),
-  onErrorContainer: Color(0xFF410002),
-  background: Color(0xFFFFFBFF),
-  onBackground: Color(0xFF1C1B1F),
-  surface: Color(0xFFFFFBFF),
-  onSurface: Color(0xFF1C1B1F),
-  surfaceVariant: Color(0xFFE5E0EC),
-  onSurfaceVariant: Color(0xFF48454F),
-  outline: Color(0xFF78767F),
-  onInverseSurface: Color(0xFFF4EFF4),
-  inverseSurface: Color(0xFF313033),
-  inversePrimary: Color(0xFFC8BFFF),
-  shadow: Color(0xFF000000),
-  surfaceTint: Color(0xFF5E52A7),
-  outlineVariant: Color(0xFFC9C5D0),
-  scrim: Color(0xFF000000),
+  background: backgroundColor,
+  onBackground: textColor,
+  primary: primaryColor,
+  onPrimary: primaryFgColor,
+  secondary: secondaryColor,
+  onSecondary: secondaryFgColor,
+  tertiary: accentColor,
+  onTertiary: accentFgColor,
+  surface: backgroundColor,
+  onSurface: textColor,
+  error: Brightness.light == Brightness.light
+      ? Color(0xffB3261E)
+      : Color(0xffF2B8B5),
+  onError: Brightness.light == Brightness.light
+      ? Color(0xffFFFFFF)
+      : Color(0xff601410),
 );
+
+const textColorDk = Color(0xFFe3eaee);
+const backgroundColorDk = Color(0xFF0a1014);
+const primaryColorDk = Color(0xFFa3c7dc);
+const primaryFgColorDk = Color(0xFF0a1014);
+const secondaryColorDk = Color(0xFF276586);
+const secondaryFgColorDk = Color(0xFFe3eaee);
+const accentColorDk = Color(0xFF4da9db);
+const accentFgColorDk = Color(0xFF131b20);
 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
-  primary: Color(0xFFC8BFFF),
-  onPrimary: Color(0xFF2F2176),
-  primaryContainer: Color(0xFF463A8D),
-  onPrimaryContainer: Color(0xFFE5DEFF),
-  secondary: Color(0xFFCABEFF),
-  onSecondary: Color(0xFF321687),
-  secondaryContainer: Color(0xFF49339E),
-  onSecondaryContainer: Color(0xFFE6DEFF),
-  tertiary: Color(0xFFC5C0FF),
-  onTertiary: Color(0xFF2300A3),
-  tertiaryContainer: Color(0xFF360EDC),
-  onTertiaryContainer: Color(0xFFE3DFFF),
-  error: Color(0xFFFFB4AB),
-  errorContainer: Color(0xFF93000A),
-  onError: Color(0xFF690005),
-  onErrorContainer: Color(0xFFFFDAD6),
-  background: Color(0xFF1C1B1F),
-  onBackground: Color(0xFFE5E1E6),
-  surface: Color(0xFF1C1B1F),
-  onSurface: Color(0xFFE5E1E6),
-  surfaceVariant: Color(0xFF48454F),
-  onSurfaceVariant: Color(0xFFC9C5D0),
-  outline: Color(0xFF928F99),
-  onInverseSurface: Color(0xFF1C1B1F),
-  inverseSurface: Color(0xFFE5E1E6),
-  inversePrimary: Color(0xFF5E52A7),
-  shadow: Color(0xFF000000),
-  surfaceTint: Color(0xFFC8BFFF),
-  outlineVariant: Color(0xFF48454F),
-  scrim: Color(0xFF000000),
+  background: backgroundColorDk,
+  onBackground: textColorDk,
+  primary: primaryColorDk,
+  onPrimary: primaryFgColorDk,
+  secondary: secondaryColorDk,
+  onSecondary: secondaryFgColorDk,
+  tertiary: accentColorDk,
+  onTertiary: accentFgColorDk,
+  surface: backgroundColorDk,
+  onSurface: textColorDk,
+  error: Brightness.dark == Brightness.light
+      ? Color(0xffB3261E)
+      : Color(0xffF2B8B5),
+  onError: Brightness.dark == Brightness.light
+      ? Color(0xffFFFFFF)
+      : Color(0xff601410),
 );

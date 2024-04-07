@@ -1,5 +1,3 @@
-import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/models.dart' as models;
 import 'package:appwrite/models.dart';
 import 'package:clackbox/features/Auth/data/datasources/auth_local.datasource.dart';
 import 'package:clackbox/features/Auth/data/datasources/auth_remote.datasource.dart';
@@ -21,25 +19,7 @@ class AuthRepository {
     _localDataSource = localDataSource;
   }
 
-  Future<Either<String, UserModel>> login(LoginModel loginModel) async {
-    try {
-      //login dengan model
-      final Session session = await _remoteDatasource.login(loginModel);
-
-      //save session id
-      _localDataSource.saveSessionId(session.$id);
-
-      // get user
-      final UserModel userModel =
-          await _remoteDatasource.getUser(session.userId);
-
-      //return user
-      return Right(userModel);
-    } catch (e) {
-      return Left(e.toString());
-    }
-  }
-
+  //Register
   Future<Either<String, UserModel>> register(
       RegisterModel registerModel) async {
     try {
@@ -70,28 +50,50 @@ class AuthRepository {
     }
   }
 
-  // Future<Either<String, UserModel?>> autoLogin() async {
+  //Register using Google
+  // Future<Either<String, UserModel>> registerWithGoogle() async {
   //   try {
-  //     //Get session id from Local datasource
-  //     final String? sessionId = await _localDataSource.getSessionId();
-
-  //     //if null return Right(null)
-  //     if (sessionId == null) return const Right(null);
-
-  //     //else getSession
-  //     final Session session = await _remoteDatasource.getSessionId(sessionId);
-
-  //     // should pass user id
-  //     //get User Data
-  //     final UserModel authUserModel =
-  //         await _remoteDatasource.getUser(session.userId);
-
-  //     //return Auth User Model
-  //     return Right(authUserModel);
+  //     final Session session = await _remoteDatasource.loginWithGoogle();
   //   } catch (e) {
   //     return Left(e.toString());
   //   }
   // }
+
+  //Login
+  Future<Either<String, UserModel>> login(LoginModel loginModel) async {
+    try {
+      //login dengan model
+      final Session session = await _remoteDatasource.login(loginModel);
+
+      //save session id
+      _localDataSource.saveSessionId(session.$id);
+
+      // get user
+      final UserModel userModel =
+          await _remoteDatasource.getUser(session.userId);
+
+      //return user
+      return Right(userModel);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  //Login with Google
+  Future<Either<String, UserModel>> loginWithGoogle() async {
+    try {
+      final Session session = await _remoteDatasource.loginWithGoogle();
+
+      _localDataSource.saveSessionId(session.$id);
+
+      final UserModel userModel =
+          await _remoteDatasource.getUser(session.userId);
+
+      return Right(userModel);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 
   Future<Either<String, Unit>> logout() async {
     try {

@@ -27,6 +27,15 @@ class AuthLoginEvent extends AuthEvent {
   });
 }
 
+//event for create Oauth2 session
+class OAuth2LoginEvent extends AuthEvent {
+  final String provider;
+
+  const OAuth2LoginEvent({
+    required this.provider,
+  });
+}
+
 // event untuk AutoLogin
 class AuthAutoLoginEvent extends AuthEvent {}
 

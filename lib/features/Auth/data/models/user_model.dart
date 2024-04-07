@@ -1,15 +1,3 @@
-// To parse this JSON data, do
-//
-//     final userModel = userModelFromJson(jsonString);
-
-// import 'dart:convert';
-
-// import 'package:flutter/foundation.dart';
-
-// UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
-
-// String userModelToJson(UserModel data) => json.encode(data.toJson());
-
 // @immutable
 class UserModel {
   final String userId;

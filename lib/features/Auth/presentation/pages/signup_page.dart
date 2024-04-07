@@ -203,6 +203,64 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                         ),
+                        HeightSpacer(height: 20.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Or signup with',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        HeightSpacer(height: 20.h),
+                        //Register with google
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // _authBloc.add(OAuth2LoginEvent(provider: 'google'));
+                              // _loginWithGoogle();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/icon/google-icon.png',
+                                  width: 20.w,
+                                  height: 20.h,
+                                ),
+                                WidthSpacer(width: 10.w),
+                                Text(
+                                  'Google',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -228,9 +286,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void _register(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      _authBloc.add(
-          AuthRegisterEvent(
-              registerModel: RegisterModel(
+      _authBloc.add(AuthRegisterEvent(
+          registerModel: RegisterModel(
         email: _emailController.text,
         password: _passwordController.text,
         name: _nameController.text,

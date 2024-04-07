@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clackbox/common/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -174,6 +175,95 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
+                        HeightSpacer(height: 15.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Or login with',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                            ),
+                          ],
+                        ),
+
+                        HeightSpacer(height: 15.h),
+
+                        //login with google
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // _authBloc.add(OAuth2LoginEvent(provider: 'google'));
+                              _loginWithGoogle(context);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/icon/google-icon.png',
+                                  width: 20.w,
+                                  height: 20.h,
+                                ),
+                                WidthSpacer(width: 10.w),
+                                Text(
+                                  'Google',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        HeightSpacer(height: 10.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Don\'t have an account?',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                  ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                context.router.push(SignUpRoute());
+                              },
+                              child: const Text(
+                                'Register',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -184,6 +274,12 @@ class _LoginPageState extends State<LoginPage> {
         },
       ),
     );
+  }
+
+  void _loginWithGoogle(BuildContext context) {
+    _authBloc.add(OAuth2LoginEvent(
+      provider: 'google',
+    ));
   }
 
   void _authBlocListener(BuildContext context, AuthState state) {

@@ -34,7 +34,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             iconSize: 30,
             onPressed: () => widget.onTap(0),
             color: widget.currentIndex == 0
-                ? Theme.of(context).colorScheme.onPrimary
+                ? Theme.of(context).colorScheme.onTertiary
                 : Theme.of(context).colorScheme.primary,
           ),
           WidthSpacer(width: 20),
@@ -62,7 +62,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             iconSize: 30,
             onPressed: () => widget.onTap(2),
             color: widget.currentIndex == 2
-                ? Theme.of(context).colorScheme.onPrimary
+                ? Theme.of(context).colorScheme.onTertiary
                 : Theme.of(context).colorScheme.primary,
           ),
         ],
