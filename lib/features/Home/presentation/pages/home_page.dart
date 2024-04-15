@@ -41,13 +41,107 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.contain,
                   color: Theme.of(context).colorScheme.primary,
                 ),
-                MyCircleAvatar(
-                  radius: 18,
-                  backgroundColor: Theme.of(context).colorScheme.onTertiary,
-                ),
               ],
             ),
           ),
+        ),
+        actions: [
+          Builder(builder: (context) {
+            return CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.onTertiary,
+              // radius: 18,
+              child: IconButton(
+                icon: Icon(
+                  Icons.account_circle_rounded,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+              ),
+            );
+          })
+        ],
+      ),
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Column(
+                children: [
+                  MyCircleAvatar(
+                    radius: 50,
+                    backgroundColor: Theme.of(context).colorScheme.onTertiary,
+                  ),
+                  HeightSpacer(height: 10.h),
+                  Text(
+                    'Username',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              title: Text(
+                'Home',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              onTap: () {
+                //change the screen to the home screen
+              },
+            ),
+            ListTile(
+              title: Text(
+                'Profile',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              onTap: () {
+                //change the screen to the profile screen
+              },
+            ),
+            ListTile(
+              title: Text(
+                'Settings',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              onTap: () {
+                //change the screen to the settings screen
+              },
+            ),
+            ListTile(
+              title: Text(
+                'Logout',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              onTap: () {
+                //change the screen to the login screen
+              },
+            ),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -96,12 +190,10 @@ class _HomePageState extends State<HomePage> {
             // HeightSpacer(height: 10.h),
             Container(
               height: 150.h,
-              // padding: EdgeInsets.symmetric(horizontal: 10.w),
-              // margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
-              // width: 330.w,
+              width: size.width,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.onTertiary,
-                borderRadius: BorderRadius.circular(10),
+                // borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
                 children: [
@@ -212,10 +304,16 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Center(
-                              child: Icon(
-                                Icons
-                                    .category, // Replace with your desired icon
-                                color: Theme.of(context).colorScheme.onPrimary,
+                              child: GestureDetector(
+                                onTap: () {
+                                  //change the screen to the Category screen
+                                },
+                                child: Icon(
+                                  Icons
+                                      .category, // Replace with your desired icon
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                ),
                               ),
                             ),
                           ),
@@ -267,6 +365,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+                  HeightSpacer(height: 10.h),
                 ],
               ),
             ),
@@ -309,29 +408,30 @@ class _HomePageState extends State<HomePage> {
               child: Stack(
                 children: [
                   Positioned(
-                      top: 35,
-                      left: 20,
-                      child: Material(
-                        child: Container(
-                          height: 180.h,
-                          width: width * 0.9,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondary
-                                    .withOpacity(0.1),
-                                blurRadius: 15,
-                                offset: Offset(-5, 5),
-                                spreadRadius: 4,
-                              ),
-                            ],
-                          ),
+                    top: 35,
+                    left: 20,
+                    child: Material(
+                      child: Container(
+                        height: 180.h,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.onTertiary,
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondary
+                                  .withOpacity(0.1),
+                              blurRadius: 15,
+                              offset: Offset(-5, 5),
+                              spreadRadius: 4,
+                            ),
+                          ],
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                   Positioned(
                     top: 0,
                     left: 30,
@@ -346,7 +446,7 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.onTertiary,
                           borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image:
                                 AssetImage('assets/onboard/gerald-imkgdc.png'),
                             fit: BoxFit.fill,
@@ -388,13 +488,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              //change the screen to the popular screen
+                              //change the screen to the Category screen
                             },
                             child: Text(
                               'Category',
                               style: GoogleFonts.plusJakartaSans(
                                 fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w800,
                                 color: Theme.of(context).colorScheme.secondary,
                               ),
                             ),
@@ -402,6 +502,59 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
+                  ),
+                ],
+              ),
+            ),
+            HeightSpacer(height: 15.h),
+            Container(
+              width: size.width,
+              height: 215.h,
+              color: Theme.of(context).colorScheme.onTertiary,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 15.w, top: 20.h),
+                        child: Text(
+                          'Build Your Own Keyboard',
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  HeightSpacer(height: 15.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 135.h,
+                        width: 355.w,
+                        color: Theme.of(context).colorScheme.background,
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              //change the screen to the Login/signup screen
+                            },
+                            child: Text(
+                              'Login/Signup to start building your own keyboard',
+                              style: GoogleFonts.plusJakartaSans(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

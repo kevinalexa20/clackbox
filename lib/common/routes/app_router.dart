@@ -6,6 +6,7 @@ import 'package:clackbox/features/Home/presentation/pages/home_page.dart';
 import 'package:clackbox/features/onboarding/presentation/pages/onboarding.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/page_one.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/page_three.dart';
+import 'package:clackbox/features/users_profile/presentation/pages/userProfile_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -19,5 +20,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: HomeRoute.page),
         AutoRoute(page: BottomNavbarRoute.page),
+        AutoRoute(page: UserProfileRoute.page),
       ];
 }
