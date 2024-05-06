@@ -37,8 +37,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(state.copyWith(
             stateStatus: StateStatus.loaded,
             userModel: userModel,
-          ));
-        });
+          ),);
+        },);
         //print utk debugging
         print(result);
       },
@@ -96,5 +96,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthState.initial());
       });
     });
+
+    //get user
+    on<AuthGetUserEvent>(
+      (event, emit) async {
+        emit(state.copyWith(stateStatus: StateStatus.loading));
+        final Either<String, UserModel> result =
+            await authRepository.getUser(event.userId);
+
+        result.fold((error) {
+          emit(state.copyWith(
+              stateStatus: StateStatus.error, errorMessage: error));
+          emit(state.copyWith(stateStatus: StateStatus.loaded));
+        }, (userModel) {
+          emit(state.copyWith(
+            stateStatus: StateStatus.loaded,
+            userModel: userModel,
+          ));
+        });
+      },
+    );
   }
 }

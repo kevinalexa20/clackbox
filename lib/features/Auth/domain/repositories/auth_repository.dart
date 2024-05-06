@@ -22,7 +22,7 @@ class AuthRepository {
   //Register
   Future<Either<String, UserModel>> register(
       RegisterModel registerModel) async {
-    try {
+    try { 
       //First Create account for Login
       await _remoteDatasource.createAccount(registerModel);
 
@@ -105,6 +105,32 @@ class AuthRepository {
       }
 
       return const Right(unit);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  //get user
+  Future<Either<String, UserModel>> getUser(String userId) async {
+    try {
+      //get session id
+      final String? sessionId = await _localDataSource.getSessionId();
+
+      //get session
+      if (sessionId != null) {
+        //get user
+        final Session session = await _remoteDatasource.getSessionId(sessionId);
+
+        //get user
+        final UserModel userModel =
+            await _remoteDatasource.getUser(session.userId);
+
+        //return user
+        return Right(userModel);
+      } else {
+        //return error
+        return Left('Session not found');
+      }
     } catch (e) {
       return Left(e.toString());
     }

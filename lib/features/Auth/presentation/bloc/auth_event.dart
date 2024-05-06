@@ -27,6 +27,15 @@ class AuthLoginEvent extends AuthEvent {
   });
 }
 
+//event for gettin user
+class AuthGetUserEvent extends AuthEvent {
+  final String userId;
+
+  const AuthGetUserEvent({
+    required this.userId,
+  });
+}
+
 //event for create Oauth2 session
 class OAuth2LoginEvent extends AuthEvent {
   final String provider;

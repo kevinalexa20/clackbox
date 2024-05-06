@@ -1,26 +1,23 @@
-import 'package:appwrite/appwrite.dart';
 import 'package:clackbox/common/dependency_injection/di_container.dart';
 import 'package:clackbox/common/routes/app_router.dart';
 import 'package:clackbox/common/services/appwrite_client.dart';
 import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
+import 'package:clackbox/features/users_profile/presentation/cubit/users_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'common/constants/constants.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
-  // Client client = Client();
-  // Databases database = Databases(Client());
   AppWriteClient();
 
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -38,6 +35,12 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<AuthBloc>(
           create: (context) => diContainer.authBloc,
         ),
+        BlocProvider<UsersProfileCubit>(
+          create: (context) => diContainer.usersProfileCubit,
+        ),
+        // BlocProvider(
+        //   create: (_) => UsersProfileCubit(),
+        // ),
       ],
       child: ScreenUtilInit(
           useInheritedMediaQuery: true,
@@ -46,13 +49,6 @@ class _MyAppState extends State<MyApp> {
           splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp.router(
-              // builder: (context, widget) {
-              //   //responsive Text
-              //   return MediaQuery(
-              //     data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              //     child: const LoginPage(),
-              //   );
-              // },
               title: 'ClackBox',
               debugShowCheckedModeBanner: false,
               routerConfig: appRouter.config(),
@@ -61,16 +57,15 @@ class _MyAppState extends State<MyApp> {
                 colorScheme: lightColorScheme,
                 useMaterial3: true,
                 textTheme: lightTextTheme,
-                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                // fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
               darkTheme: ThemeData(
                 brightness: Brightness.dark,
                 colorScheme: darkColorScheme,
                 useMaterial3: true,
                 textTheme: darkTextTheme,
-                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                // fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
-              // home: const OnBoarding(),
             );
           }),
     );

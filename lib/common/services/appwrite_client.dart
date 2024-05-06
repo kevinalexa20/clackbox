@@ -9,4 +9,6 @@ class AppWriteClient {
   final account = Account(Client());
 
   final database = Databases(Client());
+
+  Storage storage = Storage(Client());
 }

@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:clackbox/common/constants/constants.dart';
 import 'package:clackbox/features/Auth/presentation/bloc/auth_bloc.dart';
+import 'package:clackbox/features/users_profile/presentation/cubit/users_profile_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class DIContainer {
@@ -21,7 +22,7 @@ class DIContainer {
       AuthLocalDataSource(_secureStorage);
   //Remote Datasoure
   AuthRemoteDatasource get _remoteDatasource =>
-      AuthRemoteDatasource(_account, _databases, _client);
+      AuthRemoteDatasource(_account, _databases);
 
   //repository
   AuthRepository get _authRepository =>
@@ -29,4 +30,7 @@ class DIContainer {
 
   //bloc
   AuthBloc get authBloc => AuthBloc(_authRepository);
+
+  //cubit
+  UsersProfileCubit get usersProfileCubit => UsersProfileCubit(_authRepository);
 }

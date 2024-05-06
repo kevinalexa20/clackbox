@@ -12,11 +12,9 @@ class AuthRemoteDatasource {
   late Account _account = Account(AppWriteClient().client);
   late Databases _databases = Databases(AppWriteClient().client);
 
-  final Client _client;
-  User? _user;
-  // late Databases _databases;
+  // final Client _client;
 
-  AuthRemoteDatasource(Account account, Databases databases, this._client) {
+  AuthRemoteDatasource(Account account, Databases databases) {
     _account = account;
     _databases = databases;
   }
@@ -81,6 +79,7 @@ class AuthRemoteDatasource {
     return session;
   }
 
+  //Get User
   Future<UserModel> getUser(String userId) async {
     final documents = await _databases.getDocument(
       databaseId: AppWriteConstants.databaseID,
@@ -90,6 +89,7 @@ class AuthRemoteDatasource {
     return UserModel.fromJson(documents.data);
   }
 
+  //Get Session
   Future<Session> getSessionId(String sessionId) async {
     final Session session =
         await _account.getSession(sessionId: sessionId);
