@@ -31,17 +31,10 @@ class _HomePageState extends State<HomePage> {
     var size = MediaQuery.of(context).size;
     double width = MediaQuery.of(context).size.width;
     return BlocConsumer<AuthBloc, AuthState>(
-      listener: (context, state) {
-        // TODO: implement listener
-        // if (state.stateStatus == StateStatus.error) {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(
-        //       content: Text("logout"),
-        //       backgroundColor: Theme.of(context).colorScheme.error,
-        //     ),
-        //   );
-        // }
-      },
+      listener: _authBlocListener,
+      // (context, state) {
+
+      // },
       builder: (context, state) {
         if (state.stateStatus == StateStatus.loading) {
           return const LoadingWidget();
@@ -612,6 +605,26 @@ class _HomePageState extends State<HomePage> {
   //     )));
   //   }
   // }
+
+  void _authBlocListener(BuildContext context, AuthState state) {
+    if (state.stateStatus == StateStatus.error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Logout success"),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+    }
+    if (state.stateStatus == StateStatus.loaded) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Logout success"),
+          backgroundColor: Theme.of(context).colorScheme.onSecondary,
+        ),
+      );
+      context.router.push(OnBoardingRoute());
+    }
+  }
 
   void _logout(BuildContext context) {
     _authBloc.add(AuthLogoutEvent());
