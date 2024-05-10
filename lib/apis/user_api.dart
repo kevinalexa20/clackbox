@@ -16,7 +16,7 @@ final userAPIProvider = Provider((ref) {
 
 abstract class IUserAPI {
   FutureEitherVoid saveUserData(UserModel userModel);
-  Future<model.Document> getUserData(String uid);
+  Future<model.Document> getUserData(String userId);
   Future<List<model.Document>> searchUserByName(String name);
   FutureEitherVoid updateUserData(UserModel userModel);
   Stream<RealtimeMessage> getLatestUserProfileData();
@@ -39,7 +39,7 @@ class UserAPI implements IUserAPI {
       await _db.createDocument(
         databaseId: AppwriteConstants.databaseID,
         collectionId: AppwriteConstants.usersDetailsCollectionId,
-        documentId: userModel.uid,
+        documentId: userModel.userId,
         data: userModel.toMap(),
       );
       return right(null);
@@ -56,11 +56,11 @@ class UserAPI implements IUserAPI {
   }
 
   @override
-  Future<model.Document> getUserData(String uid) {
+  Future<model.Document> getUserData(String userId) {
     return _db.getDocument(
       databaseId: AppwriteConstants.databaseID,
       collectionId: AppwriteConstants.usersDetailsCollectionId,
-      documentId: uid,
+      documentId: userId,
     );
   }
 
@@ -83,7 +83,7 @@ class UserAPI implements IUserAPI {
       await _db.updateDocument(
         databaseId: AppwriteConstants.databaseID,
         collectionId: AppwriteConstants.usersDetailsCollectionId,
-        documentId: userModel.uid,
+        documentId: userModel.userId,
         data: userModel.toMap(),
       );
       return right(null);
@@ -112,7 +112,7 @@ class UserAPI implements IUserAPI {
       await _db.updateDocument(
         databaseId: AppwriteConstants.databaseID,
         collectionId: AppwriteConstants.usersDetailsCollectionId,
-        documentId: user.uid,
+        documentId: user.userId,
         data: {
           'followers': user.followers,
         },
@@ -136,7 +136,7 @@ class UserAPI implements IUserAPI {
       await _db.updateDocument(
         databaseId: AppwriteConstants.databaseID,
         collectionId: AppwriteConstants.usersDetailsCollectionId,
-        documentId: user.uid,
+        documentId: user.userId,
         data: {
           'following': user.following,
         },

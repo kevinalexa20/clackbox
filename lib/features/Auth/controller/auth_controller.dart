@@ -39,7 +39,7 @@ class AuthController extends StateNotifier<bool> {
       (l) => showSnackBar(context, l.message),
       (r) async {
         UserModel userModel = UserModel(
-          uid: r.$id,
+          userId: r.$id,
           email: email,
           name: getNameFromEmail(email),
           bio: '',
@@ -47,7 +47,7 @@ class AuthController extends StateNotifier<bool> {
           bannerPic: '',
           followers: [],
           following: [],
-          isVerified: false,
+          // isVerified: false,
         );
         final res2 = await _userAPI.saveUserData(userModel);
         res2.fold(

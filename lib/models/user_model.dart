@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class UserModel {
-  final String uid;
+  final String userId;
   final String email;
   final String name;
   final String bio;
@@ -11,9 +11,9 @@ class UserModel {
   final String bannerPic;
   final List<String> followers;
   final List<String> following;
-  final bool isVerified;
+  // final bool isVerified;
   const UserModel({
-    required this.uid,
+    required this.userId,
     required this.email,
     required this.name,
     required this.bio,
@@ -21,7 +21,7 @@ class UserModel {
     required this.bannerPic,
     required this.followers,
     required this.following,
-    required this.isVerified,
+    // required this.isVerified,
   });
 
   UserModel copyWith({
@@ -36,7 +36,7 @@ class UserModel {
     bool? isVerified,
   }) {
     return UserModel(
-      uid: uid ?? this.uid,
+      userId: uid ?? this.userId,
       email: email ?? this.email,
       name: name ?? this.name,
       bio: bio ?? this.bio,
@@ -44,13 +44,13 @@ class UserModel {
       bannerPic: bannerPic ?? this.bannerPic,
       followers: followers ?? this.followers,
       following: following ?? this.following,
-      isVerified: isVerified ?? this.isVerified,
+      // isVerified: isVerified ?? this.isVerified,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'uid': uid,
+      'userId': userId,
       'email': email,
       'name': name,
       'bio': bio,
@@ -58,13 +58,13 @@ class UserModel {
       'bannerPic': bannerPic,
       'followers': followers,
       'following': following,
-      'isVerified': isVerified,
+      // 'isVerified': isVerified,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      uid: map['uid'] as String,
+      userId: map['userId'] as String,
       email: map['email'] as String,
       name: map['name'] as String,
       bio: map['bio'] as String,
@@ -74,7 +74,7 @@ class UserModel {
       following: List<String>.from(
         (map['following'] as List<String>),
       ),
-      isVerified: map['isVerified'] as bool,
+      // isVerified: map['isVerified'] as bool,
     );
   }
 
@@ -85,34 +85,34 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(uid: $uid, email: $email, name: $name, bio: $bio, profilePic: $profilePic, bannerPic: $bannerPic, followers: $followers, following: $following, isVerified: $isVerified)';
+    return 'UserModel(uid: $userId, email: $email, name: $name, bio: $bio, profilePic: $profilePic, bannerPic: $bannerPic, followers: $followers, following: $following,)';
   }
 
   @override
   bool operator ==(covariant UserModel other) {
     if (identical(this, other)) return true;
 
-    return other.uid == uid &&
+    return other.userId == userId &&
         other.email == email &&
         other.name == name &&
         other.bio == bio &&
         other.profilePic == profilePic &&
         other.bannerPic == bannerPic &&
         listEquals(other.followers, followers) &&
-        listEquals(other.following, following) &&
-        other.isVerified == isVerified;
+        listEquals(other.following, following);
+    // other.isVerified == isVerified;
   }
 
   @override
   int get hashCode {
-    return uid.hashCode ^
+    return userId.hashCode ^
         email.hashCode ^
         name.hashCode ^
         bio.hashCode ^
         profilePic.hashCode ^
         bannerPic.hashCode ^
         followers.hashCode ^
-        following.hashCode ^
-        isVerified.hashCode;
+        following.hashCode;
+    // isVerified.hashCode;
   }
 }
