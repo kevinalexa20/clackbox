@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/constants/app_color_scheme.dart';
+import 'package:clackbox/constants/app_color_scheme.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/page_one.dart';
-import 'package:clackbox/features/onboarding/presentation/widgets/page_three.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/page_two.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

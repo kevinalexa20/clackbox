@@ -1,11 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:clackbox/common/constants/height_spacer.dart';
-import 'package:clackbox/common/global_widgets/circle_avatar.dart';
-import 'package:clackbox/features/Auth/constants.dart';
+import 'package:clackbox/constants/height_spacer.dart';
+import 'package:clackbox/global_widgets/circle_avatar.dart';
+import 'package:clackbox/features/Auth/auth.dart';
 import 'package:clackbox/features/Home/presentation/widgets/carousel_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,12 +17,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late AuthBloc _authBloc;
 
   @override
   void initState() {
     super.initState();
-    _authBloc = BlocProvider.of<AuthBloc>(context);
   }
 
   @override

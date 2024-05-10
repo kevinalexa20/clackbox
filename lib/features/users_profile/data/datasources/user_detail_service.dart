@@ -1,6 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
-import 'package:clackbox/common/constants/appwrite_constants.dart';
+import 'package:clackbox/constants/appwrite_constants.dart';
 import 'package:clackbox/common/services/appwrite_client.dart';
 
 // Future<models.DocumentList> getUserDetails() async {

@@ -1,4 +1,4 @@
-import 'package:clackbox/features/Auth/constants.dart';
+import 'package:clackbox/features/Auth/auth.dart';
 import 'package:clackbox/features/users_profile/presentation/cubit/users_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';

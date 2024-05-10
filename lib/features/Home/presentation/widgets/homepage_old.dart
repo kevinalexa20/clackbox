@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/constants/app_color_scheme.dart';
-import 'package:clackbox/common/constants/height_spacer.dart';
-import 'package:clackbox/common/constants/width_spacer.dart';
-import 'package:clackbox/common/global_widgets/circle_avatar.dart';
+import 'package:clackbox/constants/app_color_scheme.dart';
+import 'package:clackbox/constants/height_spacer.dart';
+import 'package:clackbox/constants/width_spacer.dart';
+import 'package:clackbox/global_widgets/circle_avatar.dart';
 import 'package:clackbox/features/Home/presentation/widgets/flex_screen.dart';
 import 'package:clackbox/features/Home/presentation/widgets/following_screen.dart';
 import 'package:clackbox/features/Home/presentation/widgets/foryou_screen.dart';

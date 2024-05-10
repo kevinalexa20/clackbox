@@ -1,4 +1,4 @@
-import 'package:clackbox/common/constants/app_color_scheme.dart';
+import 'package:clackbox/constants/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

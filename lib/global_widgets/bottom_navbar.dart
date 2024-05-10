@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/global_widgets/custom_bottom_navbar.dart';
+import 'package:clackbox/global_widgets/custom_bottom_navbar.dart';
 import 'package:clackbox/features/Home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 

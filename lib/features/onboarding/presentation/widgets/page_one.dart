@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/constants/app_color_scheme.dart';
-import 'package:clackbox/common/constants/appconsts.dart';
-import 'package:clackbox/common/constants/height_spacer.dart';
-import 'package:clackbox/common/constants/reusable_text.dart';
+import 'package:clackbox/constants/app_color_scheme.dart';
+import 'package:clackbox/constants/appconsts.dart';
+import 'package:clackbox/constants/height_spacer.dart';
+import 'package:clackbox/common/commonWidget/reusable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

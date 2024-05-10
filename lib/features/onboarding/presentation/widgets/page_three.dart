@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clackbox/common/constants/constants.dart';
+import 'package:clackbox/constants/constants.dart';
 import 'package:clackbox/common/routes/app_router.dart';
 import 'package:clackbox/features/onboarding/presentation/widgets/big_round_button.dart';
 import 'package:flutter/material.dart';

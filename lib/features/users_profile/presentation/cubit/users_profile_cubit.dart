@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:clackbox/features/Auth/constants.dart';
+import 'package:clackbox/features/Auth/auth.dart';
 import 'package:clackbox/features/Auth/data/models/user_model.dart';
 
 part 'users_profile_state.dart';

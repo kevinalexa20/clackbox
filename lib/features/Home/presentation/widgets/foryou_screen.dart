@@ -1,5 +1,5 @@
-import 'package:clackbox/common/constants/constants.dart';
-import 'package:clackbox/common/global_widgets/circle_avatar.dart';
+import 'package:clackbox/constants/constants.dart';
+import 'package:clackbox/global_widgets/circle_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';

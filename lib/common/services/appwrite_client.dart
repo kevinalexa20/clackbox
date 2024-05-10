@@ -1,10 +1,10 @@
 import 'package:appwrite/appwrite.dart';
-import 'package:clackbox/common/constants/constants.dart';
+import 'package:clackbox/constants/constants.dart';
 
 class AppWriteClient {
   final client = Client()
-      .setEndpoint(AppWriteConstants.endPoint)
-      .setProject(AppWriteConstants.projectID);
+      .setEndpoint(AppwriteConstants.endPoint)
+      .setProject(AppwriteConstants.projectID);
 
   final account = Account(Client());
 

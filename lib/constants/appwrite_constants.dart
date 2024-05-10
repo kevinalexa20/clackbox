@@ -1,4 +1,4 @@
-class AppWriteConstants {
+class AppwriteConstants {
   static const String projectID = "656549d10c92c8d38a20";
   static const String endPoint = "https://cloud.appwrite.io/v1";
 
@@ -14,5 +14,5 @@ class AppWriteConstants {
   static const String commentsId = "65cdda87412c6d3c3dde";
 
   //storage
-  static const String mediaBucketId = "65d585ce1bc0582a9270"; 
+  static const String mediaBucketId = "65d585ce1bc0582a9270";
 }
