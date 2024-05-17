@@ -18,7 +18,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   model.User? loggedInUser;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
   void initState() {
@@ -71,7 +70,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Form(
-                      key: _formKey,
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),

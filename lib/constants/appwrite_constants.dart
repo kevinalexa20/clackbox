@@ -1,7 +1,6 @@
 class AppwriteConstants {
   static const String projectID = "656549d10c92c8d38a20";
   static const String endPoint = "https://cloud.appwrite.io/v1";
-
   static const String databaseID = "65659ba1a5c0101a3a5d";
 
   //collections
@@ -14,5 +13,9 @@ class AppwriteConstants {
   static const String commentsId = "65cdda87412c6d3c3dde";
 
   //storage
-  static const String mediaBucketId = "65d585ce1bc0582a9270";
+  static const String imagesBucket = "664635bc003783130583";
+
+  //export image id into a Url
+  static String imageUrl(String imageId) =>
+      '$endPoint/storage/buckets/$imagesBucket/files/$imageId/view?project=$projectID&mode=admin';
 }

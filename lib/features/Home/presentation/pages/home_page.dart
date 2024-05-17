@@ -1,22 +1,25 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:clackbox/common/common.dart';
 import 'package:clackbox/constants/height_spacer.dart';
 import 'package:clackbox/global_widgets/circle_avatar.dart';
-import 'package:clackbox/features/Auth/auth.dart';
+import 'package:clackbox/features/auth/auth.dart';
 import 'package:clackbox/features/Home/presentation/widgets/carousel_images.dart';
+import 'package:clackbox/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 @RoutePage()
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
@@ -26,10 +29,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     double width = MediaQuery.of(context).size.width;
+    final currentUser = ref.watch(currentUserDetailsProvider).value;
+
+    if (currentUser == null) {
+      return Loader();
+    }
 
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Theme.of(context).colorScheme.primary,
         automaticallyImplyLeading: false,
         flexibleSpace: Container(
           alignment: Alignment.bottomLeft,
@@ -124,7 +131,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () {
                 //change the screen to the profile screen
-                context.router.push(UserProfileRoute());
+                // context.router.push(UserProfileRoute(userModel: userModel));
               },
             ),
             ListTile(
@@ -151,6 +158,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () {
                 //TODO implement logout
+                ref.read(authControllerProvider.notifier).logout(context);
               },
             ),
           ],

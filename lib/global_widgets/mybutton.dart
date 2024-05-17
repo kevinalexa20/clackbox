@@ -8,27 +8,30 @@ class MyButton extends StatelessWidget {
   final Color? color;
   final Color? imgColor;
   final Color? textColor;
+  double? width;
+  double? height;
+  double? fontSize;
 
-  const MyButton(
-      {super.key,
-      required this.text,
-      this.onTap,
-      this.color,
-      this.imgColor,
-      this.textColor});
+  MyButton({
+    super.key,
+    required this.text,
+    this.onTap,
+    this.color,
+    this.imgColor,
+    this.textColor,
+    this.width,
+    this.height,
+    this.fontSize,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 172,
-        height: 100,
+        width: width ?? 172,
+        height: height ?? 100,
         decoration: BoxDecoration(
-          // color: color ??
-          //     Color(Theme.of(context).brightness == Brightness.light
-          //         ? 0xFFF4D9FF
-          //         : 0xFF7000A8),
           color: color ?? Color(lightColorScheme.primary.value),
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
@@ -50,7 +53,7 @@ class MyButton extends StatelessWidget {
                 text,
                 style: TextStyle(
                   color: textColor ?? Color(lightColorScheme.onPrimary.value),
-                  fontSize: 16,
+                  fontSize: fontSize ?? 16,
                   fontWeight: FontWeight.w600,
                 ),
               ),

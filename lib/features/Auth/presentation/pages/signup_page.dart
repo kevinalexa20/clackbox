@@ -16,7 +16,6 @@ class SignUpPage extends ConsumerStatefulWidget {
 
 class _SignUpPageState extends ConsumerState<SignUpPage> {
   model.User? loggedInUser;
-  late final GlobalKey<FormState> _formKey = GlobalKey();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -60,7 +59,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         ),
       ),
       body: isLoading
-          ? Loader()
+          ? const Loader()
           : Container(
               width: double.infinity,
               height: double.infinity,
@@ -70,7 +69,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Form(
-                      key: _formKey,
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),

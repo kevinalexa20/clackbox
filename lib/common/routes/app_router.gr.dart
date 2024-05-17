@@ -58,9 +58,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     UserProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<UserProfileRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const UserProfilePage(),
+        child: UserProfilePage(
+          key: args.key,
+          userModel: args.userModel,
+        ),
       );
     },
   };
@@ -166,14 +170,38 @@ class SignUpRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [UserProfilePage]
-class UserProfileRoute extends PageRouteInfo<void> {
-  const UserProfileRoute({List<PageRouteInfo>? children})
-      : super(
+class UserProfileRoute extends PageRouteInfo<UserProfileRouteArgs> {
+  UserProfileRoute({
+    Key? key,
+    required UserModel userModel,
+    List<PageRouteInfo>? children,
+  }) : super(
           UserProfileRoute.name,
+          args: UserProfileRouteArgs(
+            key: key,
+            userModel: userModel,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'UserProfileRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<UserProfileRouteArgs> page =
+      PageInfo<UserProfileRouteArgs>(name);
+}
+
+class UserProfileRouteArgs {
+  const UserProfileRouteArgs({
+    this.key,
+    required this.userModel,
+  });
+
+  final Key? key;
+
+  final UserModel userModel;
+
+  @override
+  String toString() {
+    return 'UserProfileRouteArgs{key: $key, userModel: $userModel}';
+  }
 }
