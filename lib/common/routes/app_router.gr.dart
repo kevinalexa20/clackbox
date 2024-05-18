@@ -57,6 +57,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SignUpPage(),
       );
     },
+    UserProfileDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<UserProfileDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: UserProfileDetailPage(
+          key: args.key,
+          user: args.user,
+        ),
+      );
+    },
     UserProfileRoute.name: (routeData) {
       final args = routeData.argsAs<UserProfileRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -166,6 +176,44 @@ class SignUpRoute extends PageRouteInfo<void> {
   static const String name = 'SignUpRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [UserProfileDetailPage]
+class UserProfileDetailRoute extends PageRouteInfo<UserProfileDetailRouteArgs> {
+  UserProfileDetailRoute({
+    Key? key,
+    required UserModel user,
+    List<PageRouteInfo>? children,
+  }) : super(
+          UserProfileDetailRoute.name,
+          args: UserProfileDetailRouteArgs(
+            key: key,
+            user: user,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'UserProfileDetailRoute';
+
+  static const PageInfo<UserProfileDetailRouteArgs> page =
+      PageInfo<UserProfileDetailRouteArgs>(name);
+}
+
+class UserProfileDetailRouteArgs {
+  const UserProfileDetailRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'UserProfileDetailRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for

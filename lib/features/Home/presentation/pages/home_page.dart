@@ -12,27 +12,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 @RoutePage()
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends ConsumerState<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var size = MediaQuery.of(context).size;
     double width = MediaQuery.of(context).size.width;
     final currentUser = ref.watch(currentUserDetailsProvider).value;
+    UserModel userModel;
 
-    if (currentUser == null) {
-      return Loader();
+    void onCurrentUser() {
+      ref.watch(currentUserDetailsProvider).when(
+            data: (data) => userModel = data as UserModel,
+            error: (error, stacktrace) => ErrorText(error: error.toString()),
+            loading: () => Loader(),
+          );
     }
 
     return Scaffold(
@@ -131,7 +126,12 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
               onTap: () {
                 //change the screen to the profile screen
-                // context.router.push(UserProfileRoute(userModel: userModel));
+                // context.router.push();
+                // onCurrentUser();
+                // context.router.push(UserProfileRoute(userModel: currentUser));
+                // if (currentUser != null) {
+                //   context.router.push(UserProfileRoute(userModel: currentUser));
+                // }
               },
             ),
             ListTile(
@@ -233,11 +233,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       //create button tab for the different screens
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              //change the screen to the for you screen
-                            });
-                          },
+                          onTap: () {},
                           child: Text(
                             'Category',
                             style: GoogleFonts.plusJakartaSans(
@@ -256,11 +252,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              //change the screen to the popular screen
-                            });
-                          },
+                          onTap: () {},
                           child: Text(
                             'Brand',
                             style: GoogleFonts.plusJakartaSans(

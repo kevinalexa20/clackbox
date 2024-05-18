@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:clackbox/common/common.dart';
 import 'package:clackbox/features/auth/auth.dart';
 import 'package:clackbox/models/models.dart';
@@ -5,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class UserProfile extends ConsumerWidget {
+@RoutePage()
+class UserProfileDetailPage extends ConsumerWidget {
   final UserModel user;
-  const UserProfile({
+  const UserProfileDetailPage({
     super.key,
     required this.user,
   });

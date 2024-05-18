@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clackbox/features/users_profile/users_profile.dart';
 import 'package:clackbox/global_widgets/bottom_navbar.dart';
 import 'package:clackbox/features/auth/presentation/pages/login_page.dart';
 import 'package:clackbox/features/auth/presentation/pages/signup_page.dart';
